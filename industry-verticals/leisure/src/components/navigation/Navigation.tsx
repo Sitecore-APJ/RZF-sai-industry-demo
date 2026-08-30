@@ -188,10 +188,7 @@ export const Default = ({ params, fields }: NavigationProps) => {
     ));
 
   return (
-    <div
-      className={`component navigation bg-background [.component.header_&]:bg-transparent ${styles}`}
-      id={id}
-    >
+    <div className={`component navigation bg-transparent ${styles}`} id={id}>
       <div
         className={clsx(
           'relative z-150 container flex items-center py-4 lg:hidden',
