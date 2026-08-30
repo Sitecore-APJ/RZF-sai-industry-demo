@@ -1,17 +1,20 @@
+import { MANDAI_LOGO_ALT, MANDAI_LOGO_SRC } from '@/constants/brand';
 import { loremIpsum } from 'lorem-ipsum';
 import { RICH_MARKUP_INNER_HTML } from '../constants/richTextSamples';
-import { LOGO_SVG, PLACEHOLDER_SVG } from '../constants/images';
+import { PLACEHOLDER_SVG } from '../constants/images';
 
 export const createPlaceholderImageSrc = (isLogo?: boolean): string => {
-  const svg = isLogo ? LOGO_SVG : PLACEHOLDER_SVG;
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  if (isLogo) {
+    return MANDAI_LOGO_SRC;
+  }
+  return `data:image/svg+xml;utf8,${encodeURIComponent(PLACEHOLDER_SVG)}`;
 };
 
 export const createImageField = (type: 'logo' | 'placeholder' = 'placeholder') => {
   const imageTypeProps = {
     logo: {
-      width: '220',
-      height: '40',
+      width: '300',
+      height: '118',
     },
     placeholder: {
       width: '800',
@@ -26,7 +29,7 @@ export const createImageField = (type: 'logo' | 'placeholder' = 'placeholder') =
   return {
     value: {
       src,
-      alt: type,
+      alt: type === 'logo' ? MANDAI_LOGO_ALT : type,
       width,
       height,
     },
