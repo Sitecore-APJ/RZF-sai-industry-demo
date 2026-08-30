@@ -1,0 +1,84 @@
+/* Destination chrome inspired by mandai.com: deep-forest header/footer, ivory surfaces. */
+
+#header,
+.component.header,
+.component.offers {
+  background-color: var(--color-brand);
+  color: var(--color-background-accent);
+}
+
+#header .container-clean-background,
+#header .container-color-background,
+#header .container-gray-background,
+#header .container-clean-background > .component-content,
+#header .container-color-background > .component-content,
+#header .container-gray-background > .component-content,
+#header .bg-background {
+  background-color: transparent !important;
+}
+
+#header ul[role='menu'].lg\:bg-background,
+#header nav.max-lg\:fixed {
+  background-color: var(--color-background) !important;
+}
+
+#header a,
+#header button,
+.component.header a,
+.component.header button,
+.component.header .text-foreground,
+.component.offers button {
+  color: var(--color-background-accent);
+}
+
+#header a:hover,
+#header button:hover,
+.component.header a:hover,
+.component.header button:hover,
+.component.offers button:hover {
+  color: var(--color-highlight);
+}
+
+#header nav.max-lg\:fixed,
+#header ul[role='menu'].lg\:bg-background,
+.component.header nav.max-lg\:fixed,
+.component.header ul[role='menu'].lg\:bg-background {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+#header nav.max-lg\:fixed a,
+#header nav.max-lg\:fixed button,
+#header ul[role='menu'].lg\:bg-background a,
+#header ul[role='menu'].lg\:bg-background button,
+.component.header nav.max-lg\:fixed a,
+.component.header nav.max-lg\:fixed button,
+.component.header ul[role='menu'].lg\:bg-background a,
+.component.header ul[role='menu'].lg\:bg-background button {
+  color: var(--color-foreground);
+}
+
+#header nav.max-lg\:fixed a:hover,
+#header ul[role='menu'].lg\:bg-background a:hover {
+  color: var(--color-accent);
+}
+
+.component.footer {
+  @apply text-background-accent;
+}
+
+.component.footer a {
+  @apply text-background-accent/90 hover:text-highlight;
+}
+
+.arrow-btn {
+  @apply rounded-none;
+}
+
+.main-btn {
+  @apply font-body rounded-full tracking-wide;
+}
+
+.action-btn {
+  @apply font-body;
+}

@@ -56,6 +56,7 @@ For developers new to SitecoreAI you can follow the Getting Started Guide on the
 > - [luxury-retail](https://github.com/Sitecore/Sitecore.Demo.SitecoreAI.IndustryVerticals.SiteTemplates/blob/main/industry-verticals/luxury-retail/README.md)
 > - [retail](https://github.com/Sitecore/Sitecore.Demo.SitecoreAI.IndustryVerticals.SiteTemplates/blob/main/industry-verticals/retail/README.md)
 > - [travel](https://github.com/Sitecore/Sitecore.Demo.SitecoreAI.IndustryVerticals.SiteTemplates/blob/main/industry-verticals/travel/README.md)
+> - [leisure](industry-verticals/leisure/README.md)
 
 ### The following outlines the general steps for running a specific industry vertical locally:
 
