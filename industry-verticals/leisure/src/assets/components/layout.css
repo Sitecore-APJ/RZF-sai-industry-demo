@@ -125,3 +125,17 @@
   background: rgba(250, 245, 233, 0.55);
   padding: 50px;
 }
+
+/* Hero "Color background": keep the media visible and frost the copy instead of
+   filling the whole banner with a solid accent. */
+.hero-banner.container-color-background:not(.container) {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.hero-banner-glass {
+  @apply rounded-2xl border px-6 py-8 backdrop-blur-md md:px-10 md:py-12;
+  background: color-mix(in srgb, var(--color-background) 42%, transparent);
+  border-color: color-mix(in srgb, var(--color-background) 70%, transparent);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
