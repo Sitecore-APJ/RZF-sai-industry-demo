@@ -7,7 +7,7 @@ import { ChevronDown } from 'lucide-react';
 import HamburgerIcon from '@/components/non-sitecore/HamburgerIcon';
 import { useClickAway } from '@/hooks/useClickAway';
 import { useStopResponsiveTransition } from '@/hooks/useStopResponsiveTransition';
-import { MANDAI_NAV_LOGO_PARAM } from '@/constants/brand';
+import { MANDAI_LOGO_ALT, MANDAI_LOGO_SRC, MANDAI_NAV_LOGO_PARAM } from '@/constants/brand';
 import { extractMediaUrl } from '@/helpers/extractMediaUrl';
 import {
   getLinkContent,
@@ -148,6 +148,19 @@ const NavigationListItem: React.FC<NavigationListItemProps> = ({
   );
 };
 
+const LogoHomeLink = ({ logoSrc, className }: { logoSrc: string; className?: string }) => (
+  <a href="/" title={MANDAI_LOGO_ALT} className={className}>
+    <img
+      src={logoSrc}
+      alt={MANDAI_LOGO_ALT}
+      className="h-12 w-auto"
+      onError={(event) => {
+        event.currentTarget.src = MANDAI_LOGO_SRC;
+      }}
+    />
+  </a>
+);
+
 export const Default = ({ params, fields }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { page } = useSitecore();
@@ -177,6 +190,7 @@ export const Default = ({ params, fields }: NavigationProps) => {
   const rootItem = Object.values(preparedFields).find((item) => isNavRootItem(item));
   const logoSrc = extractMediaUrl(logoImage || MANDAI_NAV_LOGO_PARAM);
   const hasLogoRootItem = !!(rootItem && logoSrc);
+  const showStandaloneLogo = !!logoSrc && !rootItem;
 
   const navigationItems = Object.values(preparedFields)
     .filter((item): item is NavItemFields => !!item)
@@ -190,6 +204,20 @@ export const Default = ({ params, fields }: NavigationProps) => {
       />
     ));
 
+  if (showStandaloneLogo && logoSrc) {
+    const midpoint = Math.floor(navigationItems.length / 2);
+    navigationItems.splice(
+      midpoint,
+      0,
+      <li
+        key="mandai-logo"
+        className="relative flex shrink-0 flex-col items-center justify-center max-lg:hidden"
+      >
+        <LogoHomeLink logoSrc={logoSrc} />
+      </li>
+    );
+  }
+
   return (
     <div className={`component navigation bg-transparent ${styles}`} id={id}>
       <div
@@ -198,7 +226,9 @@ export const Default = ({ params, fields }: NavigationProps) => {
           !isSimpleLayout &&
             '[.component.header_&]:grid-cols-2 [.component.header_&]:px-0 [.component.header_&]:max-lg:grid',
           !isSimpleLayout ? 'flex-row-reverse' : '',
-          isSimpleLayout && !hasLogoRootItem ? 'justify-end' : 'justify-between'
+          isSimpleLayout && !hasLogoRootItem && !showStandaloneLogo
+            ? 'justify-end'
+            : 'justify-between'
         )}
       >
         {hasLogoRootItem && (
@@ -212,6 +242,15 @@ export const Default = ({ params, fields }: NavigationProps) => {
           >
             {getLinkContent(rootItem!, logoSrc)}
           </Link>
+        )}
+        {showStandaloneLogo && logoSrc && (
+          <LogoHomeLink
+            logoSrc={logoSrc}
+            className={clsx(
+              'navigation-mobile-trigger',
+              !isSimpleLayout && '[.component.header_&]:mx-auto'
+            )}
+          />
         )}
         <HamburgerIcon
           isOpen={isMenuOpen}
@@ -241,7 +280,7 @@ export const Default = ({ params, fields }: NavigationProps) => {
           role="menubar"
           className={clsx(
             'container flex flex-col items-center justify-center gap-x-8 gap-y-4 py-6 text-lg lg:flex-row xl:gap-x-16',
-            isSimpleLayout && !hasLogoRootItem && 'lg:justify-end'
+            isSimpleLayout && !hasLogoRootItem && !showStandaloneLogo && 'lg:justify-end'
           )}
         >
           {navigationItems}
