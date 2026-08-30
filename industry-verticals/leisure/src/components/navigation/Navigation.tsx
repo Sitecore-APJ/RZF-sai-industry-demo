@@ -7,7 +7,7 @@ import { ChevronDown } from 'lucide-react';
 import HamburgerIcon from '@/components/non-sitecore/HamburgerIcon';
 import { useClickAway } from '@/hooks/useClickAway';
 import { useStopResponsiveTransition } from '@/hooks/useStopResponsiveTransition';
-import { extractMediaUrl } from '@/helpers/extractMediaUrl';
+import { MANDAI_LOGO_SRC } from '@/constants/brand';
 import {
   getLinkContent,
   getLinkField,
@@ -150,7 +150,7 @@ const NavigationListItem: React.FC<NavigationListItemProps> = ({
 export const Default = ({ params, fields }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { page } = useSitecore();
-  const { styles, RenderingIdentifier: id, Logo: logoImage, SimpleLayout: simpleLayout } = params;
+  const { styles, RenderingIdentifier: id, SimpleLayout: simpleLayout } = params;
 
   useStopResponsiveTransition();
 
@@ -172,8 +172,8 @@ export const Default = ({ params, fields }: NavigationProps) => {
   const isSimpleLayout = isParamEnabled(simpleLayout);
   const preparedFields = prepareFields(fields, !isSimpleLayout);
   const rootItem = Object.values(preparedFields).find((item) => isNavRootItem(item));
-  const logoSrc = extractMediaUrl(logoImage);
-  const hasLogoRootItem = rootItem && logoSrc;
+  const logoSrc = MANDAI_LOGO_SRC;
+  const hasLogoRootItem = !!rootItem;
 
   const navigationItems = Object.values(preparedFields)
     .filter((item): item is NavItemFields => !!item)

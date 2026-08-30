@@ -1,4 +1,5 @@
 import { NavigationProps, NavItemFields } from '@/components/navigation/Navigation';
+import { MANDAI_LOGO_ALT, MANDAI_LOGO_SRC } from '@/constants/brand';
 import React, { JSX } from 'react';
 import { LinkField, Text } from '@sitecore-content-sdk/nextjs';
 
@@ -16,10 +17,8 @@ export const isNavRootItem = (fields: NavItemFields): boolean => {
 export const getLinkContent = (fields: NavItemFields, logoSrc?: string): JSX.Element | string => {
   const isRootItem = isNavRootItem(fields);
 
-  if (isRootItem && logoSrc) {
-    const altText =
-      fields.NavigationTitle?.value || fields.Title?.value || fields.DisplayName || '';
-    return <img src={logoSrc} alt={String(altText)} className="h-auto w-36" />;
+  if (isRootItem) {
+    return <img src={logoSrc || MANDAI_LOGO_SRC} alt={MANDAI_LOGO_ALT} className="h-12 w-auto" />;
   }
 
   const textField = fields.NavigationTitle || fields.Title;

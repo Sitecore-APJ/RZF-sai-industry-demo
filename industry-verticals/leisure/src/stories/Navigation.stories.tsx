@@ -20,7 +20,7 @@ const meta = {
   play: async ({ canvasElement, userEvent, args, step }) => {
     await step('Logo rendering', async () => {
       const logoImg = canvasElement.querySelector('[role="menuitem"] img');
-      if (args.hasLogo && args.withRoot) {
+      if (args.withRoot) {
         expect(logoImg).toBeInTheDocument();
       } else {
         expect(logoImg).not.toBeInTheDocument();
