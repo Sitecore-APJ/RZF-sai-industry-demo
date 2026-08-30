@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { isParamEnabled } from '@/helpers/isParamEnabled';
-import { MANDAI_OFFERS } from '@/constants/mandaiSite';
 
 interface OfferFields {
   id: string;
@@ -29,16 +28,7 @@ export const Default = (props: OfferProps) => {
 
   const id = props.params.RenderingIdentifier;
   const uid = props.rendering.uid;
-  const cmsOffers = props.fields?.Offers || [];
-  const datasource = page.mode.isEditing
-    ? cmsOffers
-    : MANDAI_OFFERS.map((text, index) => ({
-        id: `mandai-offer-${index}`,
-        displayName: text,
-        name: text,
-        url: '/',
-        fields: { OfferText: { value: text } },
-      }));
+  const datasource = props.fields?.Offers || [];
   const styles = `${props.params.styles || ''}`.trim();
   const autoPlay = isParamEnabled(props.params.Autoplay);
 

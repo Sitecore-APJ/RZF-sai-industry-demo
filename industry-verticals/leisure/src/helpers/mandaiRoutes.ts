@@ -1,5 +1,3 @@
-import { MANDAI_STATIC_PATHS, type MandaiStaticPath } from '@/constants/mandaiSite';
-
 const normalizePath = (path: string): string => {
   if (!path) {
     return '/';
@@ -12,8 +10,13 @@ const normalizePath = (path: string): string => {
   return trimmed === '' ? '/' : trimmed;
 };
 
-export const isMandaiStaticPath = (path: string): path is MandaiStaticPath => {
-  return (MANDAI_STATIC_PATHS as readonly string[]).includes(normalizePath(path));
+const LEGACY_OVERLAY_REDIRECTS: Record<string, string> = {
+  '/discover': '/Discover',
+  '/tickets': '/Tickets',
+  '/plan-your-visit': '/Plan-Your-Visit',
+  '/see-and-do': '/See-and-Do',
+  '/dine-and-shop': '/Dine-and-Shop',
+  '/about': '/',
 };
 
 export const resolveRequestPath = (
@@ -31,33 +34,33 @@ export const resolveRequestPath = (
 
 export const getFormaluxRedirect = (path: string): string | null => {
   const normalized = normalizePath(path);
+  const overlayRedirect = LEGACY_OVERLAY_REDIRECTS[normalized.toLowerCase()];
+
+  if (overlayRedirect && overlayRedirect !== normalized) {
+    return overlayRedirect;
+  }
 
   if (/(^|\/)(Furniture|Products)(\/|$)/i.test(normalized)) {
-    return '/discover';
+    return '/Discover';
   }
   if (/(^|\/)Decor(\/|$)/i.test(normalized)) {
-    return '/see-and-do';
+    return '/See-and-Do';
   }
   if (/(^|\/)About-Us(\/|$)/i.test(normalized)) {
-    return '/about';
+    return '/';
   }
   if (/(^|\/)Contact(\/|$)/i.test(normalized)) {
-    return '/plan-your-visit';
+    return '/Plan-Your-Visit';
   }
-  if (/(^|\/)Articles(\/|$)/i.test(normalized)) {
-    return '/see-and-do';
+  if (/(^|\/)Articles\//i.test(normalized)) {
+    return '/See-and-Do';
   }
   if (/(^|\/)Landing-Pages(\/|$)/i.test(normalized)) {
     return '/';
   }
   if (/(^|\/)(Checkout|Wishlist)(\/|$)/i.test(normalized)) {
-    return '/tickets';
+    return '/Tickets';
   }
 
   return null;
-};
-
-export const getMandaiPagePath = (path: string): MandaiStaticPath | null => {
-  const normalized = normalizePath(path);
-  return isMandaiStaticPath(normalized) ? normalized : null;
 };

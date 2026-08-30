@@ -2,19 +2,15 @@ import {
   ComponentParams,
   ComponentRendering,
   ImageField,
+  Link,
   LinkField,
+  Placeholder,
+  RichText,
   RichTextField,
+  Text,
   TextField,
 } from '@sitecore-content-sdk/nextjs';
 import { MANDAI_LOGO_ALT, MANDAI_LOGO_SRC } from '@/constants/brand';
-import {
-  MANDAI_COPYRIGHT,
-  MANDAI_FOOTER_COLUMNS,
-  MANDAI_FOOTER_DESCRIPTION,
-  MANDAI_POLICY,
-  MANDAI_TERMS,
-} from '@/constants/mandaiSite';
-import Link from 'next/link';
 import React from 'react';
 
 interface Fields {
@@ -38,6 +34,39 @@ type FooterProps = {
 
 export const Default = (props: FooterProps) => {
   const id = props.params.RenderingIdentifier;
+  const phKeyOne = `footer-list-first-${props?.params?.DynamicPlaceholderId}`;
+  const phKeyTwo = `footer-list-second-${props?.params?.DynamicPlaceholderId}`;
+  const phKeyThree = `footer-list-third-${props?.params?.DynamicPlaceholderId}`;
+  const phKeyFour = `footer-list-fourth-${props?.params?.DynamicPlaceholderId}`;
+  const phKeyFive = `footer-list-fifth-${props?.params?.DynamicPlaceholderId}`;
+
+  const sections = [
+    {
+      key: 'first_nav',
+      title: <Text field={props.fields.TitleOne} />,
+      content: <Placeholder name={phKeyOne} rendering={props.rendering} />,
+    },
+    {
+      key: 'second_nav',
+      title: <Text field={props.fields.TitleTwo} />,
+      content: <Placeholder name={phKeyTwo} rendering={props.rendering} />,
+    },
+    {
+      key: 'third_nav',
+      title: <Text field={props.fields.TitleThree} />,
+      content: <Placeholder name={phKeyThree} rendering={props.rendering} />,
+    },
+    {
+      key: 'fourth_nav',
+      title: <Text field={props.fields.TitleFour} />,
+      content: <Placeholder name={phKeyFour} rendering={props.rendering} />,
+    },
+    {
+      key: 'fifth_nav',
+      title: <Text field={props.fields.TitleFive} />,
+      content: <Placeholder name={phKeyFive} rendering={props.rendering} />,
+    },
+  ];
 
   return (
     <section className={`component footer relative ${props.params.styles} overflow-hidden`} id={id}>
@@ -51,21 +80,13 @@ export const Default = (props: FooterProps) => {
                 className="mandai-footer-logo h-12 w-auto"
               />
             </div>
-            <p className="max-w-sm leading-relaxed">{MANDAI_FOOTER_DESCRIPTION}</p>
+            <RichText field={props.fields.Description} className="max-w-sm leading-relaxed" />
           </div>
           <div className="grid gap-13 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5 xl:gap-12">
-            {MANDAI_FOOTER_COLUMNS.map((column) => (
-              <div key={column.title}>
-                <div className="text-highlight mb-8 text-lg font-bold">{column.title}</div>
-                <div className="space-y-4">
-                  {column.links.map((item) => (
-                    <div key={item.title}>
-                      <Link href={item.href} className="hover:text-highlight">
-                        {item.title}
-                      </Link>
-                    </div>
-                  ))}
-                </div>
+            {sections.map(({ key, title, content }) => (
+              <div key={key}>
+                <div className="text-highlight mb-8 text-lg font-bold">{title}</div>
+                <div className="space-y-4">{content}</div>
               </div>
             ))}
           </div>
@@ -73,14 +94,12 @@ export const Default = (props: FooterProps) => {
       </div>
       <div className="bg-foreground text-background-accent">
         <div className="container flex items-center justify-between py-8.5 max-sm:flex-col max-sm:items-start max-sm:gap-10">
-          <div className="max-sm:order-2">{MANDAI_COPYRIGHT}</div>
+          <div className="max-sm:order-2">
+            <Text field={props.fields.CopyrightText} />
+          </div>
           <div className="flex items-center justify-between gap-20 max-lg:gap-10 max-sm:order-1 max-sm:flex-col max-sm:items-start max-sm:gap-5">
-            <Link href={MANDAI_TERMS.href} className="hover:underline">
-              {MANDAI_TERMS.text}
-            </Link>
-            <Link href={MANDAI_POLICY.href} className="hover:underline">
-              {MANDAI_POLICY.text}
-            </Link>
+            <Link field={props.fields.TermsText} className="hover:underline" />
+            <Link field={props.fields.PolicyText} className="hover:underline" />
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ import HamburgerIcon from '@/components/non-sitecore/HamburgerIcon';
 import { useClickAway } from '@/hooks/useClickAway';
 import { useStopResponsiveTransition } from '@/hooks/useStopResponsiveTransition';
 import { MANDAI_LOGO_SRC } from '@/constants/brand';
-import { buildMandaiNavigationFields, isFormaluxNavigation } from '@/helpers/buildMandaiNavFields';
 import {
   getLinkContent,
   getLinkField,
@@ -155,13 +154,7 @@ export const Default = ({ params, fields }: NavigationProps) => {
 
   useStopResponsiveTransition();
 
-  const incomingHasRoot = Object.values(fields || {}).some((item) => item && isNavRootItem(item));
-  const sourceFields =
-    !page.mode.isEditing && isFormaluxNavigation(fields)
-      ? buildMandaiNavigationFields({ withRoot: incomingHasRoot })
-      : fields;
-
-  if (!Object.values(sourceFields).some((v) => !!v)) {
+  if (!Object.values(fields || {}).some((v) => !!v)) {
     return (
       <div className={`component navigation ${styles}`} id={id}>
         <div className="component-content">[Navigation]</div>
@@ -177,7 +170,7 @@ export const Default = ({ params, fields }: NavigationProps) => {
   };
 
   const isSimpleLayout = isParamEnabled(simpleLayout);
-  const preparedFields = prepareFields(sourceFields, !isSimpleLayout);
+  const preparedFields = prepareFields(fields, !isSimpleLayout);
   const rootItem = Object.values(preparedFields).find((item) => isNavRootItem(item));
   const logoSrc = MANDAI_LOGO_SRC;
   const hasLogoRootItem = !!rootItem;
