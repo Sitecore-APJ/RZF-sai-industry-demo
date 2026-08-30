@@ -64,24 +64,17 @@ Additional Info: You do not have to create rendering host items in XM Cloud as t
 
 ## Sitecore Search Configuration
 
-There are two options for search configuration:
-
-1. Use the existing forma-lux search source as a starting point
-2. Create a new source in the CEC portal and link it to your application
-
-### Use existing forma-lux search source
-
-Set the envs as follows
+Mandai Wildlife Reserve uses the following Sitecore Search source. Set customer key and API key from the CEC portal (do not commit those secrets).
 
 ```bash
    - NEXT_PUBLIC_SEARCH_ENV=prod
    - NEXT_PUBLIC_SEARCH_CUSTOMER_KEY=<Can be taken from cec portal>
    - NEXT_PUBLIC_SEARCH_API_KEY=<Can be taken from cec portal>
-   - NEXT_PUBLIC_SEARCH_SOURCE=1193018
+   - NEXT_PUBLIC_SEARCH_SOURCE=1179013
    - NEXT_PUBLIC_BASE_URL=<Hosted Domain URL>
 ```
 
-### Create new source in CEC portal and link to your application
+To use a different source, create one in the CEC portal and update `NEXT_PUBLIC_SEARCH_SOURCE` plus widget IDs in `src/constants/search.ts`.
 
 https://sitecore.atlassian.net/wiki/x/ZwAengE
 

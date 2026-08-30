@@ -33,6 +33,8 @@ const HOSTS = [
     name: "leisure",
     variables: {
       NEXT_PUBLIC_DEFAULT_SITE_NAME: "mandai-wildlife-reserve",
+      NEXT_PUBLIC_SEARCH_ENV: "prod",
+      NEXT_PUBLIC_SEARCH_SOURCE: "1179013",
     },
   },
 ];
