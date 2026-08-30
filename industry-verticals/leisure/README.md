@@ -55,8 +55,8 @@ If you have not enabled the split deployment feature your editing hosts are auto
 11. Check if repository is set correctly (should be by default)
 12. Check if Branch is set correctly (should be by default)
 13. Set the Auto deploy option (recommended)
-15. Click "Save"
-16. On the new editing host click the ... and hit "Build and deploy"
+14. Click "Save"
+15. On the new editing host click the ... and hit "Build and deploy"
 
 Additional Info: You do not have to create rendering host items in XM Cloud as those are created automatically for you when creating a rendering host. Mapping of sites using site templates to editing hosts is also done automatically.
 
@@ -65,11 +65,14 @@ Additional Info: You do not have to create rendering host items in XM Cloud as t
 ## Sitecore Search Configuration
 
 There are two options for search configuration:
+
 1. Use the existing forma-lux search source as a starting point
 2. Create a new source in the CEC portal and link it to your application
 
 ### Use existing forma-lux search source
+
 Set the envs as follows
+
 ```bash
    - NEXT_PUBLIC_SEARCH_ENV=prod
    - NEXT_PUBLIC_SEARCH_CUSTOMER_KEY=<Can be taken from cec portal>
@@ -79,16 +82,19 @@ Set the envs as follows
 ```
 
 ### Create new source in CEC portal and link to your application
+
 https://sitecore.atlassian.net/wiki/x/ZwAengE
 
 ### Localization Support
 
 #### By default, the leisure site supports the following locales:
+
 - en (English)
 - fr-FR (French)
 - es-ES (Spanish)
 
 #### Add Additional Languages
+
 - Navigate to Channels → Click the three dots on the specific site → Settings → Languages.
 - Add the required languages and provide translations for the newly added languages.
 - After adding the new languages, update the locales array in the next.config.js file to include the new language codes.
