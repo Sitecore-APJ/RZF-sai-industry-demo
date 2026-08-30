@@ -15,6 +15,7 @@ import { isDesignLibraryPreviewData } from '@sitecore-content-sdk/nextjs/editing
 import client from 'lib/sitecore-client';
 import components from '.sitecore/component-map';
 import scConfig from 'sitecore.config';
+import { getFormaluxRedirect, resolveRequestPath } from '@/helpers/mandaiRoutes';
 
 const SitecorePage = ({ page, notFound, componentProps }: SitecorePageProps): JSX.Element => {
   useEffect(() => {
@@ -75,15 +76,32 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 // revalidation (or fallback) is enabled and a new request comes in.
 export const getStaticProps: GetStaticProps = async (context) => {
   let props = {};
-  const path = extractPath(context);
+  const extractedPath = extractPath(context);
+  const path = resolveRequestPath(extractedPath, context.params as { path?: string | string[] });
+  const formaluxRedirect = getFormaluxRedirect(path);
+
+  if (formaluxRedirect && !context.preview) {
+    return {
+      redirect: {
+        destination: formaluxRedirect,
+        permanent: false,
+      },
+      revalidate: 5,
+    };
+  }
+
   let page;
 
   if (context.preview && isDesignLibraryPreviewData(context.previewData)) {
     page = await client.getDesignLibraryData(context.previewData);
+  } else if (context.preview) {
+    page = await client.getPreview(context.previewData);
   } else {
-    page = context.preview
-      ? await client.getPreview(context.previewData)
-      : await client.getPage(path, { locale: context.locale });
+    try {
+      page = await client.getPage(path || extractedPath, { locale: context.locale });
+    } catch {
+      page = undefined;
+    }
   }
   if (page) {
     props = {

@@ -21,7 +21,7 @@ import ProductCarousel from 'src/components/non-sitecore/ProductCarousel';
 import { CommonStyles, LayoutStyles, PromoFlags, HeroBannerStyles } from '@/types/styleFlags';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation, A11y, Keyboard } from 'swiper/modules';
-import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Heart, Plus, Star, User, X, Check, Loader2, LoaderCircle, ShoppingCart, Search, Globe, MoreHorizontal, Home } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Heart, Plus, Star, User, X, Check, Loader2, LoaderCircle, Search, Globe, MoreHorizontal, Home } from 'lucide-react';
 import Link_a258c208ba01265ca0aa9c7abae745cc7141aa63 from 'next/link';
 import { cn } from '@/shadcn/lib/utils';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
@@ -72,11 +72,11 @@ import { Accordion, Content, Header, Item, Trigger } from '@radix-ui/react-accor
 import Image from 'next/image';
 import SuggestionBlock from 'src/components/non-sitecore/search/SuggestionBlock';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shadcn/components/ui/popover';
-import { MiniCart } from 'src/components/non-sitecore/MiniCart';
 import PreviewSearch_938f3b0320996fc3fe6ab3d953daf2e708e085ca from 'src/components/non-sitecore/search/PreviewSearch';
 import HamburgerIcon from '@/components/non-sitecore/HamburgerIcon';
 import { useClickAway } from '@/hooks/useClickAway';
 import { useStopResponsiveTransition } from '@/hooks/useStopResponsiveTransition';
+import { MANDAI_NAV_LOGO_PARAM, MANDAI_LOGO_ALT, MANDAI_LOGO_MEDIA_PATH, MANDAI_LOGO_SRC } from '@/constants/brand';
 import { extractMediaUrl } from '@/helpers/extractMediaUrl';
 import { getLinkContent, getLinkField, isNavLevel, isNavRootItem, prepareFields } from '@/helpers/navHelpers';
 import { useRouter as useRouter_0e8a928699f624a3ad05eb9c9906b0e7ce1a00be } from 'next/router';
@@ -216,7 +216,6 @@ const importMap = [
       { name: 'Check', value: Check },
       { name: 'Loader2', value: Loader2 },
       { name: 'LoaderCircle', value: LoaderCircle },
-      { name: 'ShoppingCart', value: ShoppingCart },
       { name: 'Search', value: Search },
       { name: 'Globe', value: Globe },
       { name: 'MoreHorizontal', value: MoreHorizontal },
@@ -566,12 +565,6 @@ const importMap = [
     ]
   },
   {
-    module: 'src/components/non-sitecore/MiniCart',
-    exports: [
-      { name: 'MiniCart', value: MiniCart },
-    ]
-  },
-  {
     module: 'src/components/non-sitecore/search/PreviewSearch',
     exports: [
       { name: 'default', value: PreviewSearch_938f3b0320996fc3fe6ab3d953daf2e708e085ca },
@@ -593,6 +586,15 @@ const importMap = [
     module: '@/hooks/useStopResponsiveTransition',
     exports: [
       { name: 'useStopResponsiveTransition', value: useStopResponsiveTransition },
+    ]
+  },
+  {
+    module: '@/constants/brand',
+    exports: [
+      { name: 'MANDAI_NAV_LOGO_PARAM', value: MANDAI_NAV_LOGO_PARAM },
+      { name: 'MANDAI_LOGO_ALT', value: MANDAI_LOGO_ALT },
+      { name: 'MANDAI_LOGO_MEDIA_PATH', value: MANDAI_LOGO_MEDIA_PATH },
+      { name: 'MANDAI_LOGO_SRC', value: MANDAI_LOGO_SRC },
     ]
   },
   {
