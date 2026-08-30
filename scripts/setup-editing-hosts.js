@@ -29,6 +29,12 @@ const HOSTS = [
     name: "luxury-retail",
     variables: {},
   },
+  {
+    name: "leisure",
+    variables: {
+      NEXT_PUBLIC_DEFAULT_SITE_NAME: "mandai-wildlife-reserve",
+    },
+  },
 ];
 
 // ==========================================

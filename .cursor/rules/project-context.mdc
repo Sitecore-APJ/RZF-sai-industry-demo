@@ -25,6 +25,7 @@ Available Sites:
 - `starter` - **starter** - Simple Next.js starter with basic components
 - `travel` - **Skywings** - Travel focused site template with articles and destinations
 - `energy` - **Gridwell** - Energy focused site template with grid condition/status and articles
+- `leisure` - **Mandai Wildlife Reserve** - Leisure site based on Formalux (`nextjsstarter`), with editing host `leisure`
 
 Each site demonstrates:
 - Tailwind-based styling with Shadcn/ui components

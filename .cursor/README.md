@@ -33,7 +33,8 @@ This repository contains multiple starter applications:
 - **FormaLux** - Retail focused site template for a furniture brand with products and articles
 - **starter** - Simple Next.js starter with basic components
 - **Skywings** - Travel focused site template with articles and destinations
-- **Gridwell** - Energy focused site template with articles 
+- **Gridwell** - Energy focused site template with articles
+- **Mandai Wildlife Reserve** - Leisure site based on Formalux, editing host `leisure` 
 
 Each starter follows the same patterns and conventions defined in these rules while maintaining their unique functionality and design.
 
