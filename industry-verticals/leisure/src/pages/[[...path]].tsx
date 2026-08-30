@@ -15,6 +15,7 @@ import { isDesignLibraryPreviewData } from '@sitecore-content-sdk/nextjs/editing
 import client from 'lib/sitecore-client';
 import components from '.sitecore/component-map';
 import scConfig from 'sitecore.config';
+import { getFormaluxRedirect, isMandaiStaticPath } from '@/helpers/mandaiRoutes';
 
 const SitecorePage = ({ page, notFound, componentProps }: SitecorePageProps): JSX.Element => {
   useEffect(() => {
@@ -76,6 +77,18 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   let props = {};
   const path = extractPath(context);
+  const formaluxRedirect = getFormaluxRedirect(path);
+
+  if (formaluxRedirect && !context.preview) {
+    return {
+      redirect: {
+        destination: formaluxRedirect,
+        permanent: false,
+      },
+      revalidate: 5,
+    };
+  }
+
   let page;
 
   if (context.preview && isDesignLibraryPreviewData(context.previewData)) {
@@ -84,6 +97,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     page = context.preview
       ? await client.getPreview(context.previewData)
       : await client.getPage(path, { locale: context.locale });
+
+    if (!page && !context.preview && isMandaiStaticPath(path)) {
+      page = await client.getPage('/', { locale: context.locale });
+    }
   }
   if (page) {
     props = {

@@ -54,6 +54,17 @@
   filter: brightness(0) invert(1);
 }
 
+#header .component.navigation ul[role='menubar'] {
+  @apply gap-x-5 text-base xl:gap-x-8;
+}
+
+.mandai-home h1,
+.mandai-home h2,
+.mandai-page h1,
+.mandai-page h2 {
+  @apply font-heading;
+}
+
 .arrow-btn {
   @apply rounded-none;
 }

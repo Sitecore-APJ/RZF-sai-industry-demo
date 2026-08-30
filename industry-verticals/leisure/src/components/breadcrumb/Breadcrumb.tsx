@@ -46,7 +46,16 @@ export const Default = (props: BreadcrumbProps) => {
 
   const { page } = useSitecore();
 
-  const visibleAncestors = item.ancestors.filter((ancestor) => !hasNavFilter(ancestor, filterName));
+  const crumbText = [item?.name, ...(item?.ancestors || []).map((ancestor) => ancestor.name)].join(
+    ' '
+  );
+  if (!page.mode.isEditing && /furniture|decor|forma\s*lux|about-us/i.test(crumbText)) {
+    return null;
+  }
+
+  const visibleAncestors = (item.ancestors || []).filter(
+    (ancestor) => !hasNavFilter(ancestor, filterName)
+  );
   const showItem = !hasNavFilter(item, filterName);
 
   const isTemplateEditing =

@@ -28,65 +28,78 @@ export const navRoot = {
 
 export const topLevelPages = [
   {
-    ...createNavItem('Furniture'),
+    ...createNavItem('Discover Mandai'),
+    Href: '/discover',
     Styles: ['level1', 'item0', 'odd', 'first'],
-  },
-  {
-    ...createNavItem('Decor'),
-    Styles: ['level1', 'item1', 'even'],
-  },
-  {
-    ...createNavItem('About us'),
-    Styles: ['level1', 'item1', 'even'],
     Children: [
       {
-        ...createNavItem('Our story'),
+        ...createNavItem('Singapore Zoo'),
+        Href: '/discover#singapore-zoo',
         Styles: ['level2', 'item0', 'odd', 'first'],
       },
       {
-        ...createNavItem('Our team'),
+        ...createNavItem('Night Safari'),
+        Href: '/discover#night-safari',
         Styles: ['level2', 'item1', 'even'],
       },
       {
-        ...createNavItem('Careers'),
+        ...createNavItem('Bird Paradise'),
+        Href: '/discover#bird-paradise',
         Styles: ['level2', 'item2', 'odd', 'last'],
       },
     ],
   },
   {
-    ...createNavItem('Contact'),
-    Styles: ['level1', 'submenu', 'item2', 'odd', 'last'],
+    ...createNavItem('Tickets & Passes'),
+    Href: '/tickets',
+    Styles: ['level1', 'item1', 'even'],
+  },
+  {
+    ...createNavItem('Plan Your Visit'),
+    Href: '/plan-your-visit',
+    Styles: ['level1', 'item2', 'odd'],
+  },
+  {
+    ...createNavItem('See & Do'),
+    Href: '/see-and-do',
+    Styles: ['level1', 'item3', 'even', 'last'],
   },
 ];
 
 export const flatTopLevelPages = [
   {
-    ...createNavItem('Furniture'),
+    ...createNavItem('Discover Mandai'),
+    Href: '/discover',
     Styles: ['level0', 'item0', 'odd', 'first', 'flat-level1'],
   },
   {
-    ...createNavItem('Decor'),
+    ...createNavItem('Tickets & Passes'),
+    Href: '/tickets',
     Styles: ['level0', 'item1', 'even', 'flat-level1'],
   },
   {
-    ...createNavItem('About us'),
+    ...createNavItem('Plan Your Visit'),
+    Href: '/plan-your-visit',
     Styles: ['level0', 'item1', 'even', 'flat-level1'],
   },
   {
-    ...createNavItem('Our story'),
+    ...createNavItem('Singapore Zoo'),
+    Href: '/discover#singapore-zoo',
     Styles: ['level0', 'item0', 'odd', 'first', 'flat-level2'],
   },
   {
-    ...createNavItem('Our team'),
+    ...createNavItem('Night Safari'),
+    Href: '/discover#night-safari',
     Styles: ['level0', 'item1', 'even', 'flat-level2'],
   },
   {
-    ...createNavItem('Careers'),
+    ...createNavItem('Bird Paradise'),
+    Href: '/discover#bird-paradise',
     Styles: ['level0', 'item2', 'odd', 'last', 'flat-level2'],
   },
-
   {
-    ...createNavItem('Contact'),
+    ...createNavItem('See & Do'),
+    Href: '/see-and-do',
     Styles: ['level0', 'submenu', 'item2', 'odd', 'last', 'flat-level1'],
   },
 ];

@@ -8,6 +8,9 @@ import Scripts from 'src/Scripts';
 import SitecoreStyles from 'src/components/content-sdk/SitecoreStyles';
 import { DesignLibraryLayout } from './DesignLibraryLayout';
 import { useRouter } from 'next/router';
+import { MandaiPageMain } from '@/components/mandai/MandaiPageMain';
+import { getMandaiPagePath } from '@/helpers/mandaiRoutes';
+import { MANDAI_HOME_META, MANDAI_PAGES, MANDAI_SITE_NAME } from '@/constants/mandaiSite';
 
 interface LayoutProps {
   page: Page;
@@ -30,22 +33,44 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
   const fields = route?.fields as RouteFields;
   const mainClassPageEditing = mode.isEditing ? 'editing-mode' : 'prod-mode';
 
+  const currentPath = router.asPath;
+  const mandaiPath = !mode.isEditing ? getMandaiPagePath(currentPath) : null;
+  const mandaiTitle =
+    mandaiPath === '/'
+      ? MANDAI_HOME_META.title
+      : mandaiPath
+        ? `${MANDAI_PAGES[mandaiPath].title} | ${MANDAI_SITE_NAME}`
+        : '';
+  const mandaiDescription =
+    mandaiPath === '/'
+      ? MANDAI_HOME_META.description
+      : mandaiPath
+        ? MANDAI_PAGES[mandaiPath].lede
+        : '';
   const metaDescription =
-    fields?.metadataDescription?.value?.toString() || fields?.pageSummary?.value?.toString() || '';
-  const metaKeywords = fields?.metadataKeywords?.value?.toString() || '';
-  const ogTitle = fields?.metadataTitle?.value?.toString() || 'Page';
+    mandaiDescription ||
+    fields?.metadataDescription?.value?.toString() ||
+    fields?.pageSummary?.value?.toString() ||
+    '';
+  const metaKeywords = mandaiPath
+    ? 'Mandai Wildlife Reserve, Singapore Zoo, Night Safari, Bird Paradise'
+    : fields?.metadataKeywords?.value?.toString() || '';
+  const ogTitle = mandaiTitle || fields?.metadataTitle?.value?.toString() || 'Page';
   const ogImage = fields?.ogImage?.value?.src;
   const ogDescription =
-    fields?.metadataDescription?.value?.toString() || fields?.pageSummary?.value?.toString() || '';
-  const currentPath = router.asPath;
+    mandaiDescription ||
+    fields?.metadataDescription?.value?.toString() ||
+    fields?.pageSummary?.value?.toString() ||
+    '';
   const ogUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ''}${currentPath}`;
+  const documentTitle = mandaiTitle || fields?.Title?.value?.toString() || 'Page';
 
   return (
     <>
       <Scripts />
       <SitecoreStyles layoutData={layout} />
       <Head>
-        <title>{fields?.Title?.value?.toString() || 'Page'}</title>
+        <title>{documentTitle}</title>
         <link rel="icon" href="/favicon.ico" />
         {metaDescription && <meta name="description" content={metaDescription} />}
         {metaKeywords && <meta name="keywords" content={metaKeywords} />}
@@ -71,7 +96,11 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
             </header>
             <main>
               <div id="content">
-                {route && <Placeholder name="headless-main" rendering={route} />}
+                {mandaiPath ? (
+                  <MandaiPageMain path={mandaiPath} />
+                ) : (
+                  route && <Placeholder name="headless-main" rendering={route} />
+                )}
               </div>
             </main>
             <footer>

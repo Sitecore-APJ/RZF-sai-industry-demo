@@ -1,12 +1,11 @@
 import React, { JSX, useState, useEffect } from 'react';
-import { User, Heart, ShoppingCart, X, Search } from 'lucide-react';
+import { User, X, Search } from 'lucide-react';
 import { ComponentProps } from '@/lib/component-props';
 import { isParamEnabled } from '@/helpers/isParamEnabled';
 import { useI18n } from 'next-localization';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shadcn/components/ui/popover';
 import { PopoverClose } from '@radix-ui/react-popover';
-import { MiniCart } from '../non-sitecore/MiniCart';
 import { LinkField } from '@sitecore-content-sdk/nextjs';
 import PreviewSearch from '../non-sitecore/search/PreviewSearch';
 import { PREVIEW_WIDGET_ID } from '@/constants/search';
@@ -46,9 +45,7 @@ const IconDropdown = ({
 
 export const Default = (props: NavigationIconsProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
-  const showWishlistIcon = !isParamEnabled(props.params.HideWishlistIcon);
   const showAccountIcon = !isParamEnabled(props.params.HideAccountIcon);
-  const showCartIcon = !isParamEnabled(props.params.HideCartIcon);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -74,18 +71,6 @@ export const Default = (props: NavigationIconsProps): JSX.Element => {
           {showAccountIcon && (
             <IconDropdown icon={<User className="size-5" />} label="Account">
               <p>{t('account-empty') || 'You are not logged in.'}</p>
-            </IconDropdown>
-          )}
-
-          {showWishlistIcon && (
-            <IconDropdown icon={<Heart className="size-5" />} label="Wishlist">
-              <p>{t('wishlist-empty') || 'Your wishlist is empty.'}</p>
-            </IconDropdown>
-          )}
-
-          {showCartIcon && (
-            <IconDropdown icon={<ShoppingCart className="size-5" />} label="Cart">
-              <MiniCart showWishlist={showWishlistIcon} checkoutPage={props.fields?.CheckoutPage} />
             </IconDropdown>
           )}
         </div>
