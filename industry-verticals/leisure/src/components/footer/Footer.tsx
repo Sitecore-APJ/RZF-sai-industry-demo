@@ -1,6 +1,7 @@
 import {
   ComponentParams,
   ComponentRendering,
+  Image,
   ImageField,
   Link,
   LinkField,
@@ -10,7 +11,7 @@ import {
   Text,
   TextField,
 } from '@sitecore-content-sdk/nextjs';
-import { MANDAI_LOGO_ALT, MANDAI_LOGO_SRC } from '@/constants/brand';
+import { MANDAI_LOGO_ALT, MANDAI_LOGO_MEDIA_PATH, MANDAI_LOGO_SRC } from '@/constants/brand';
 import React from 'react';
 
 interface Fields {
@@ -74,11 +75,18 @@ export const Default = (props: FooterProps) => {
         <div className="container grid gap-12 py-28.5 lg:grid-cols-[1fr_3fr]">
           <div className="flex flex-col gap-7">
             <div className="sm:max-w-40">
-              <img
-                src={MANDAI_LOGO_SRC}
-                alt={MANDAI_LOGO_ALT}
-                className="mandai-footer-logo h-12 w-auto"
-              />
+              {props.fields.Logo?.value?.src ? (
+                <Image field={props.fields.Logo} className="mandai-footer-logo h-12 w-auto" />
+              ) : (
+                <img
+                  src={MANDAI_LOGO_MEDIA_PATH}
+                  alt={MANDAI_LOGO_ALT}
+                  className="mandai-footer-logo h-12 w-auto"
+                  onError={(event) => {
+                    event.currentTarget.src = MANDAI_LOGO_SRC;
+                  }}
+                />
+              )}
             </div>
             <RichText field={props.fields.Description} className="max-w-sm leading-relaxed" />
           </div>

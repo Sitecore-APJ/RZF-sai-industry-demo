@@ -7,7 +7,8 @@ import { ChevronDown } from 'lucide-react';
 import HamburgerIcon from '@/components/non-sitecore/HamburgerIcon';
 import { useClickAway } from '@/hooks/useClickAway';
 import { useStopResponsiveTransition } from '@/hooks/useStopResponsiveTransition';
-import { MANDAI_LOGO_SRC } from '@/constants/brand';
+import { MANDAI_NAV_LOGO_PARAM } from '@/constants/brand';
+import { extractMediaUrl } from '@/helpers/extractMediaUrl';
 import {
   getLinkContent,
   getLinkField,
@@ -150,15 +151,17 @@ const NavigationListItem: React.FC<NavigationListItemProps> = ({
 export const Default = ({ params, fields }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { page } = useSitecore();
-  const { styles, RenderingIdentifier: id, SimpleLayout: simpleLayout } = params;
+  const { styles, RenderingIdentifier: id, Logo: logoImage, SimpleLayout: simpleLayout } = params;
 
   useStopResponsiveTransition();
 
   if (!Object.values(fields || {}).some((v) => !!v)) {
-    return (
+    return page.mode.isEditing ? (
       <div className={`component navigation ${styles}`} id={id}>
         <div className="component-content">[Navigation]</div>
       </div>
+    ) : (
+      <></>
     );
   }
 
@@ -172,8 +175,8 @@ export const Default = ({ params, fields }: NavigationProps) => {
   const isSimpleLayout = isParamEnabled(simpleLayout);
   const preparedFields = prepareFields(fields, !isSimpleLayout);
   const rootItem = Object.values(preparedFields).find((item) => isNavRootItem(item));
-  const logoSrc = MANDAI_LOGO_SRC;
-  const hasLogoRootItem = !!rootItem;
+  const logoSrc = extractMediaUrl(logoImage || MANDAI_NAV_LOGO_PARAM);
+  const hasLogoRootItem = !!(rootItem && logoSrc);
 
   const navigationItems = Object.values(preparedFields)
     .filter((item): item is NavItemFields => !!item)

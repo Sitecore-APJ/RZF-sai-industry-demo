@@ -1,4 +1,4 @@
-import { MANDAI_LOGO_SRC } from '@/constants/brand';
+import { MANDAI_NAV_LOGO_PARAM } from '@/constants/brand';
 import { createTextField } from '../helpers/createFields';
 
 export const createNavItem = (text: string) => {
@@ -121,4 +121,4 @@ export const getNavigationFields = (options?: { withRoot?: boolean; flat?: boole
   return arrayToObject(pages);
 };
 
-export const logoParam = `<image mediaid="8cc2a449-e23b-488c-bb23-3d7c7a07f6e7" mediaurl="${MANDAI_LOGO_SRC}" />`;
+export const logoParam = MANDAI_NAV_LOGO_PARAM;

@@ -17,8 +17,19 @@ export const isNavRootItem = (fields: NavItemFields): boolean => {
 export const getLinkContent = (fields: NavItemFields, logoSrc?: string): JSX.Element | string => {
   const isRootItem = isNavRootItem(fields);
 
-  if (isRootItem) {
-    return <img src={logoSrc || MANDAI_LOGO_SRC} alt={MANDAI_LOGO_ALT} className="h-12 w-auto" />;
+  if (isRootItem && logoSrc) {
+    const altText =
+      fields.NavigationTitle?.value || fields.Title?.value || fields.DisplayName || MANDAI_LOGO_ALT;
+    return (
+      <img
+        src={logoSrc}
+        alt={String(altText)}
+        className="h-12 w-auto"
+        onError={(event) => {
+          event.currentTarget.src = MANDAI_LOGO_SRC;
+        }}
+      />
+    );
   }
 
   const textField = fields.NavigationTitle || fields.Title;

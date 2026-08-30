@@ -72,6 +72,16 @@ const nextConfig = {
         source: '/feaas-render',
         destination: '/api/editing/feaas/render',
       },
+      // Serve the Mandai media-library logo from the local/public copy when
+      // Navigation Logo is assigned as /-/media/... (Edge URLs still used as-is).
+      {
+        source: '/-/media/Project/industry-verticals/mandai-wildlife-reserve/Mandai/logo.png',
+        destination: '/images/mandai-wildlife-reserve-logo.png',
+      },
+      {
+        source: '/-/media/34e463f3-064f-482f-a1b9-07985bf7a433.ashx',
+        destination: '/images/mandai-wildlife-reserve-logo.png',
+      },
     ];
   },
 
