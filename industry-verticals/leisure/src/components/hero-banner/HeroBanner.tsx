@@ -26,6 +26,14 @@ interface HeroBannerProps extends ComponentProps {
   fields: Fields;
 }
 
+const COLOR_BACKGROUND = 'container-color-background';
+
+const getTextPanelClass = (styles: string, screenLayer: boolean): string =>
+  clsx({
+    'hero-banner-glass': styles.includes(COLOR_BACKGROUND),
+    shim: screenLayer && !styles.includes(COLOR_BACKGROUND),
+  });
+
 const HeroBannerCommon = ({
   params,
   fields,
@@ -100,7 +108,7 @@ export const Default = ({ params, fields, rendering }: HeroBannerProps) => {
             className={`flex min-h-238 w-full py-10 lg:w-1/2 lg:items-center ${reverseLayout ? 'lg:mr-auto' : 'lg:ml-auto'}`}
           >
             <div className="max-w-182">
-              <div className={clsx({ shim: screenLayer })}>
+              <div className={getTextPanelClass(styles, screenLayer)}>
                 {/* Title */}
                 <h1 className="font-heading text-center text-5xl leading-[110%] font-semibold md:text-7xl md:leading-[130%] lg:text-left xl:text-[80px]">
                   <ContentSdkText field={fields.Title} />
@@ -148,7 +156,7 @@ export const TopContent = ({ params, fields, rendering }: HeroBannerProps) => {
           <div
             className={`flex flex-col items-center py-10 lg:py-44 ${reverseLayout ? 'justify-end' : 'justify-start'}`}
           >
-            <div className={clsx({ shim: screenLayer })}>
+            <div className={getTextPanelClass(styles, screenLayer)}>
               {/* Title */}
               <h1 className="font-heading text-center text-5xl leading-[110%] font-semibold md:text-7xl md:leading-[130%] xl:text-[80px]">
                 <ContentSdkText field={fields.Title} />

@@ -13,6 +13,7 @@ type StoryProps = ComponentProps<typeof HeroBanner> & {
   reverseLayout?: boolean;
   withoutGradientOverlay?: boolean;
   screenLayer?: boolean;
+  colorBackground?: boolean;
 };
 
 const meta = {
@@ -41,6 +42,13 @@ const meta = {
       },
       defaultValue: false,
     },
+    colorBackground: {
+      name: 'Color background (glass overlay)',
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
     reverseLayout: {
       name: 'Reverse Layout',
       control: {
@@ -62,6 +70,7 @@ const meta = {
     reverseLayout: false,
     withPlaceholder: false,
     screenLayer: false,
+    colorBackground: false,
   },
   parameters: {
     layout: 'fullscreen',
@@ -111,6 +120,7 @@ export const Default: Story = {
         args.hideAccentLine && CommonStyles.HideAccentLine,
         args.withoutGradientOverlay && HeroBannerStyles.HideGradientOverlay,
         args.screenLayer && HeroBannerStyles.ScreenLayer,
+        args.colorBackground && 'container-color-background',
         args.reverseLayout && LayoutStyles.Reversed,
         args.withPlaceholder && HeroBannerStyles.WithPlaceholder
       ),
@@ -131,6 +141,7 @@ export const WithTopContent: Story = {
         args.hideAccentLine && CommonStyles.HideAccentLine,
         args.withoutGradientOverlay && HeroBannerStyles.HideGradientOverlay,
         args.screenLayer && HeroBannerStyles.ScreenLayer,
+        args.colorBackground && 'container-color-background',
         args.reverseLayout && LayoutStyles.Reversed,
         args.withPlaceholder && HeroBannerStyles.WithPlaceholder
       ),
@@ -139,5 +150,29 @@ export const WithTopContent: Story = {
     const fields = createHeroBannerFields();
 
     return <TopContent params={params} rendering={baseRendering} fields={fields} />;
+  },
+};
+
+export const ColorBackgroundGlass: Story = {
+  args: {
+    colorBackground: true,
+  },
+  render: (args) => {
+    const params = {
+      ...baseParams,
+      styles: clsx(
+        baseParams.styles,
+        args.hideAccentLine && CommonStyles.HideAccentLine,
+        args.withoutGradientOverlay && HeroBannerStyles.HideGradientOverlay,
+        args.screenLayer && HeroBannerStyles.ScreenLayer,
+        'container-color-background',
+        args.reverseLayout && LayoutStyles.Reversed,
+        args.withPlaceholder && HeroBannerStyles.WithPlaceholder
+      ),
+    };
+
+    const fields = createHeroBannerFields();
+
+    return <HeroBanner params={params} rendering={baseRendering} fields={fields} />;
   },
 };
