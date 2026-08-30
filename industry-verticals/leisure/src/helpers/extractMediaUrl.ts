@@ -39,6 +39,9 @@ export function extractMediaUrl(param: string | undefined): string | undefined {
 
   const mediaId = param.match(/mediaid="\{?([0-9A-Fa-f-]+)\}?"/i)?.[1];
   const mappedSrc = fallbackForMediaId(mediaId);
+  if (mappedSrc) {
+    return mappedSrc;
+  }
 
   const mediaUrl = param.match(/mediaurl="([^"]*)"/i)?.[1];
   if (mediaUrl && !isDamOrMissingUrl(mediaUrl)) {
@@ -48,10 +51,6 @@ export function extractMediaUrl(param: string | undefined): string | undefined {
   const src = param.match(/(?:^|\s)src="([^"]*)"/i)?.[1];
   if (src && !isDamOrMissingUrl(src)) {
     return src;
-  }
-
-  if (mappedSrc) {
-    return mappedSrc;
   }
 
   if (mediaId) {
