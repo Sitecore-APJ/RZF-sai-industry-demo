@@ -4,6 +4,8 @@
 
 Mandai Wildlife Reserve is a leisure site based on the Forma Lux (retail) starter. This editing host is a copy of `nextjsstarter` so Mandai can be tailored independently of Formalux.
 
+The UI theme follows the Mandai SitecoreAI brand kit and publicly visible [mandai.com](https://www.mandai.com/en.html) styles: deep forest (`#003400`) chrome, canopy green accents, warm ivory surfaces, Vollkorn headings, and Poppins body copy.
+
 ## Developer Expectations:
 
 - Tailwind-based styling (Shadcn)

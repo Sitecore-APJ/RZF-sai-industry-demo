@@ -1,0 +1,55 @@
+/* Destination chrome inspired by mandai.com: deep-forest header/footer, ivory surfaces. */
+
+.component.header {
+  @apply bg-brand text-background-accent;
+}
+
+.component.header a,
+.component.header button,
+.component.header .text-foreground {
+  color: var(--color-background-accent);
+}
+
+.component.header a:hover,
+.component.header button:hover,
+.component.header .hover\:text-accent:hover,
+.component.header .hover\:text-foreground-light:hover {
+  color: var(--color-highlight);
+}
+
+.component.header nav.max-lg\:fixed,
+.component.header ul[role='menu'].lg\:bg-background {
+  color: var(--color-foreground);
+}
+
+.component.header nav.max-lg\:fixed a,
+.component.header nav.max-lg\:fixed button,
+.component.header ul[role='menu'].lg\:bg-background a,
+.component.header ul[role='menu'].lg\:bg-background button {
+  color: var(--color-foreground);
+}
+
+.component.header nav.max-lg\:fixed a:hover,
+.component.header ul[role='menu'].lg\:bg-background a:hover {
+  color: var(--color-accent);
+}
+
+.component.footer {
+  @apply text-background-accent;
+}
+
+.component.footer a {
+  @apply text-background-accent/90 hover:text-highlight;
+}
+
+.arrow-btn {
+  @apply rounded-none;
+}
+
+.main-btn {
+  @apply font-body rounded-full tracking-wide;
+}
+
+.action-btn {
+  @apply font-body;
+}

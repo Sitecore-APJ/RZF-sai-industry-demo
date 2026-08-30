@@ -13,7 +13,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading text-foreground leading-[1.3] font-bold;
+    @apply font-heading text-foreground leading-[1.2] font-semibold tracking-tight;
   }
 
   h1 {
@@ -54,7 +54,7 @@
   }
 
   .eyebrow {
-    @apply text-accent text-lg font-semibold tracking-[0.175em] uppercase;
+    @apply text-accent font-body text-sm font-semibold tracking-[0.14em] uppercase;
   }
 
   .image-cover {

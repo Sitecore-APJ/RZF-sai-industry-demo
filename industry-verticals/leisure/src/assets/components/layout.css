@@ -42,12 +42,12 @@
 
 .container-dark-background {
   > .component-content {
-    @apply border-accent;
+    @apply border-brand;
   }
 
   &:not(.container),
   &.container > .component-content {
-    @apply bg-accent border-accent text-background;
+    @apply bg-brand border-brand text-background;
 
     * {
       @apply text-inherit;
@@ -122,6 +122,6 @@
 }
 
 .shim {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(250, 245, 233, 0.55);
   padding: 50px;
 }
