@@ -13,7 +13,7 @@
   h4,
   h5,
   h6 {
-    @apply font-heading text-foreground leading-[1.3] font-normal;
+    @apply font-heading text-foreground leading-[1.15] font-bold;
   }
 
   h1 {
@@ -42,7 +42,7 @@
 
   p,
   li {
-    @apply font-body font-light;
+    @apply font-body font-normal;
   }
 
   button:not(:disabled),
