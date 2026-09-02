@@ -19,6 +19,9 @@ interface HeroBannerProps extends ComponentProps {
   fields: Fields;
 }
 
+const heroTextGlassClassName =
+  'max-w-3xl rounded-lg border border-white/20 bg-black/30 px-5 py-4 backdrop-blur-md';
+
 const HeroBannerCommon = ({
   params,
   fields,
@@ -32,7 +35,7 @@ const HeroBannerCommon = ({
 
   if (!fields) {
     return isPageEditing ? (
-      <div className={`component hero-banner min-h-screen ${styles}`} id={id}>
+      <div className={`component hero-banner h-[320px] max-h-[320px] ${styles}`} id={id}>
         [HERO BANNER]
       </div>
     ) : (
@@ -42,7 +45,7 @@ const HeroBannerCommon = ({
 
   return (
     <section
-      className={`component hero-banner ${styles} relative flex min-h-screen flex-col items-center py-10`}
+      className={`component hero-banner ${styles} relative flex h-[320px] max-h-[320px] flex-col items-center overflow-hidden`}
       id={id}
     >
       {/* Background Media */}
@@ -86,18 +89,18 @@ export const Default = ({ params, fields, rendering }: HeroBannerProps) => {
   return (
     <HeroBannerCommon params={params} fields={fields} rendering={rendering}>
       <div className="relative flex h-full w-full flex-grow items-end">
-        <div className="container mx-auto flex h-full items-end px-4 py-6">
+        <div className="container mx-auto flex h-full items-end px-4 py-4">
           <div
             className={`flex w-full ${
               reverseLayout ? 'justify-end text-right' : 'justify-start text-left'
             }`}
           >
-            <div>
-              <h1 className="font-heading text-background-muted text-4xl tracking-tight capitalize lg:text-7xl">
+            <div className={heroTextGlassClassName}>
+              <h1 className="font-heading text-background-muted text-3xl tracking-tight capitalize lg:text-4xl">
                 <ContentSdkText field={fields.Title} />
               </h1>
 
-              <div className="text-background-muted text-md lg:text-xl">
+              <div className="text-background-muted text-md lg:text-lg">
                 <ContentSdkRichText field={fields.Description} />
               </div>
             </div>
@@ -122,12 +125,12 @@ export const TopContent = ({ params, fields, rendering }: HeroBannerProps) => {
               reverseLayout ? 'justify-start text-left' : 'justify-end text-right'
             }`}
           >
-            <div className="">
-              <h1 className="font-heading text-background-muted text-4xl tracking-tight capitalize lg:text-7xl">
+            <div className={heroTextGlassClassName}>
+              <h1 className="font-heading text-background-muted text-3xl tracking-tight capitalize lg:text-4xl">
                 <ContentSdkText field={fields.Title} />
               </h1>
 
-              <div className="text-background-muted text-md lg:text-xl">
+              <div className="text-background-muted text-md lg:text-lg">
                 <ContentSdkRichText field={fields.Description} />
               </div>
             </div>
