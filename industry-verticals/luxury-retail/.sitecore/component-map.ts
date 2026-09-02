@@ -9,6 +9,7 @@ import * as ThemeEditor from 'src/components/theme-editor/ThemeEditor';
 import * as SocialFollow from 'src/components/social-follow/SocialFollow';
 import * as SocialFeed from 'src/components/social-feed/SocialFeed';
 import * as SelectedProducts from 'src/components/selected-products/SelectedProducts';
+import * as SelectedArticles from 'src/components/selected-articles/SelectedArticles';
 import * as SectionWrapper from 'src/components/section-wrapper/SectionWrapper';
 import * as RowSplitter from 'src/components/row-splitter/RowSplitter';
 import * as RichText from 'src/components/rich-text/RichText';
@@ -31,6 +32,8 @@ import * as Features from 'src/components/features/Features';
 import * as ContentBlock from 'src/components/content-block/ContentBlock';
 import * as Container from 'src/components/container/Container';
 import * as ColumnSplitter from 'src/components/column-splitter/ColumnSplitter';
+import * as ArticleListing from 'src/components/article-listing/ArticleListing';
+import * as ArticleDetails from 'src/components/article-details/ArticleDetails';
 
 export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['BYOCWrapper', BYOCWrapper],
@@ -41,6 +44,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['SocialFollow', { ...SocialFollow }],
   ['SocialFeed', { ...SocialFeed }],
   ['SelectedProducts', { ...SelectedProducts }],
+  ['SelectedArticles', { ...SelectedArticles, componentType: 'client' }],
   ['SectionWrapper', { ...SectionWrapper }],
   ['RowSplitter', { ...RowSplitter }],
   ['RichText', { ...RichText }],
@@ -63,6 +67,8 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ContentBlock', { ...ContentBlock }],
   ['Container', { ...Container }],
   ['ColumnSplitter', { ...ColumnSplitter }],
+  ['ArticleListing', { ...ArticleListing }],
+  ['ArticleDetails', { ...ArticleDetails }],
 ]);
 
 export default componentMap;
