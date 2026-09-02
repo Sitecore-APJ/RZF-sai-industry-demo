@@ -19,6 +19,9 @@ interface HeroBannerProps extends ComponentProps {
   fields: Fields;
 }
 
+const heroTextGlassClassName =
+  'max-w-3xl rounded-lg border border-white/20 bg-black/30 px-6 py-5 backdrop-blur-md';
+
 const HeroBannerCommon = ({
   params,
   fields,
@@ -92,7 +95,7 @@ export const Default = ({ params, fields, rendering }: HeroBannerProps) => {
               reverseLayout ? 'justify-end text-right' : 'justify-start text-left'
             }`}
           >
-            <div>
+            <div className={heroTextGlassClassName}>
               <h1 className="font-heading text-background-muted text-4xl tracking-tight capitalize lg:text-7xl">
                 <ContentSdkText field={fields.Title} />
               </h1>
@@ -122,7 +125,7 @@ export const TopContent = ({ params, fields, rendering }: HeroBannerProps) => {
               reverseLayout ? 'justify-start text-left' : 'justify-end text-right'
             }`}
           >
-            <div className="">
+            <div className={heroTextGlassClassName}>
               <h1 className="font-heading text-background-muted text-4xl tracking-tight capitalize lg:text-7xl">
                 <ContentSdkText field={fields.Title} />
               </h1>
