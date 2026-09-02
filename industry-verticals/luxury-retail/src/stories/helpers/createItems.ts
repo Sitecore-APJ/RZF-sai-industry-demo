@@ -1,12 +1,44 @@
 import { ProductIGQL } from '@/types/products';
+import { Article, Author, Category } from '@/types/article';
 import {
   createIGQLField,
   createImageField,
   createLinkField,
   createNumberField,
+  createRichTextField,
   createTextField,
 } from './createFields';
 import { Field } from '@sitecore-content-sdk/nextjs';
+
+export const createMockArticles = (count: number): Article[] =>
+  Array.from({ length: count }).map((_, i) => ({
+    id: `article-${i + 1}`,
+    displayName: `Article ${i + 1}`,
+    name: `article${i + 1}`,
+    url: `/articles/article-${i + 1}`,
+    fields: {
+      Title: createTextField(`Article Title ${i + 1}`),
+      ShortDescription: createTextField(`Short description for article ${i + 1}`),
+      Content: createRichTextField(i + 1),
+      Image: createImageField(),
+      PublishedDate: { value: new Date(2025, 8, 10 - i).toISOString() },
+      Author: {
+        id: `author-${i + 1}`,
+        displayName: `Author ${i + 1}`,
+        name: `Author ${i + 1}`,
+        url: `/authors/author-${i + 1}`,
+        fields: { AuthorName: createTextField(`Author ${i + 1}`) },
+      } as Author,
+      Tags: [],
+      Category: {
+        id: `category-${i % 2}`,
+        displayName: i % 2 === 0 ? 'Tech' : 'Lifestyle',
+        name: i % 2 === 0 ? 'Tech' : 'Lifestyle',
+        url: `/categories/${i % 2 === 0 ? 'tech' : 'lifestyle'}`,
+        fields: { Category: createTextField(i % 2 === 0 ? 'Tech' : 'Lifestyle') },
+      } as Category,
+    },
+  }));
 
 export const createLinkItems = (count: number) =>
   Array.from({ length: count }).map((_, i) => ({
