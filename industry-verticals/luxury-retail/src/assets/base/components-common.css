@@ -74,11 +74,18 @@
   }
 }
 
-.header .navigation img,
-.component.header .navigation img {
+.header img,
+.component.header img,
+.header .component.image img,
+.component.header .component.image img {
+  max-width: 200px !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.header .component.image,
+.component.header .component.image {
   max-width: 200px;
-  width: auto;
-  height: auto;
 }
 
 .drawer-heading {
