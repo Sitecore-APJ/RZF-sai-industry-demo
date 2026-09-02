@@ -66,6 +66,13 @@
   @apply flex items-center justify-items-start gap-x-6 *:w-auto *:basis-auto;
 }
 
+.header .navigation img,
+.component.header .navigation img {
+  max-width: 200px;
+  width: auto;
+  height: auto;
+}
+
 .drawer-heading {
   @apply mt-7 mb-18 text-2xl;
 }
