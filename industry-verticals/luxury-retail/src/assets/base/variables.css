@@ -1,22 +1,46 @@
+/*
+  Cash Converters theme tokens.
+
+  Paste the same block into SitecoreAI Pages → Cash Converters → Settings → Theme Settings
+  (ThemeDefaults and/or CustomCSS) so ThemeEditor does not re-apply Essential Living values:
+
+    --color-foreground: #353535;
+    --color-foreground-light: #8B8C8C;
+    --color-background: #FFFFFF;
+    --color-background-accent: #FFF8D6;
+    --color-background-muted: #F7F7F7;
+    --color-accent: #921934;
+    --color-highlight: #FFD912;
+    --color-highlight-hover: #F5A623;
+    --color-success: #36D12F;
+    --color-danger: #D53D39;
+    --color-border: #E5E5E5;
+    --font-heading: 'Baloo Paaji 2', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --radius-base: 0.25rem;
+*/
 @theme {
-  --color-foreground: #2c2621;
-  --color-foreground-light: #948685;
+  --color-foreground: #353535;
+  --color-foreground-light: #8b8c8c;
 
-  --color-background: #fbfaf9;
-  --color-background-accent: #f9eee6;
-  --color-background-muted: #f5f2f1;
+  --color-background: #ffffff;
+  --color-background-accent: #fff8d6;
+  --color-background-muted: #f7f7f7;
 
-  --color-accent: #846854;
+  --color-accent: #921934;
 
-  --color-success: #2ec1ac;
-  --color-danger: #e97171;
+  --color-highlight: #ffd912;
+  --color-highlight-hover: #f5a623;
 
-  --color-border: #846854;
+  --color-success: #36d12f;
+  --color-danger: #d53d39;
 
-  --font-heading: 'Libre Baskerville', serif;
-  --font-body: 'Poppins', sans-serif;
+  --color-border: #e5e5e5;
 
-  --radius-base: 0rem;
+  --font-heading: 'Baloo Paaji 2', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  --radius-base: 0.25rem;
 
   /*
   This does not show in the theme editor
